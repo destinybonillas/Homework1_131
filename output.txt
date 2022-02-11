@@ -1,0 +1,19 @@
+Welcome to Forgotten Books! This is a bookstore  filled with books from all around! Please place your books into  your shopping cart.
+ Enclose string entries with quotes, separate fields with commas.
+ Enter CTRL-Z for Windows, or CTRL-D for Linux to quit
+ Enter ISBN, Title, Author, and Price
+Item(s) added to shopping cart: "0000171921", "Linux commands & resources directory - 1st ed", "Howard L. Goldberg", 56.69
+ Enter ISBN, Title, Author, and Price
+Item(s) added to shopping cart: "0000370096", "Where eagles dare", "Norah Woollard", 118.07
+ Enter ISBN, Title, Author, and Price
+Item(s) added to shopping cart: "0001005340", "Little Grey Rabbit's Birthday", "Alison \"Ally\" Uttley", 31.57
+ Enter ISBN, Title, Author, and Price
+Item(s) added to shopping cart: "0001062417", "Early aircraft", "Allward, Maurice F.", 65.65
+ Enter ISBN, Title, Author, and Price
+Item(s) added to shopping cart: "0001051776", "The  poems of Rudyard Kipling", "Rudyard Kipling", 26.45
+ Enter ISBN, Title, Author, and Price
+"0000171921", "Linux commands & resources directory - 1st ed", "Howard L. Goldberg", 56.69
+"0000370096", "Where eagles dare", "Norah Woollard", 118.07
+"0001005340", "Little Grey Rabbit's Birthday", "Alison \"Ally\" Uttley", 31.57
+"0001062417", "Early aircraft", "Allward, Maurice F.", 65.65
+"0001051776", "The  poems of Rudyard Kipling", "Rudyard Kipling", 26.45
