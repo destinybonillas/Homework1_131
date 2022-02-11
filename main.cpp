@@ -1,25 +1,44 @@
-#include <iostream>
-#include <vector>
+#include <iomanip>   // needed for setprecision
+#include <iostream>  // needed for showpoint() && fixed()
+#include <memory>    // needed for unique_ptr
+#include <utility>   // needed for move()
+#include <vector>  
 
-#include "Book.hpp"
+#include "Book.hpp"  // needed to use contents from book class
 
 int main() {
-    Book b;
 
-    // Read book from standard input until end of file
-    std::cin >> b;
 
-    // store book in dynamilcally created object
-    Book * newB = new Book;
+    // Start w/ a welcome message
+                // showpoint, fixed, setprecision can be used this early on to ensure
+                // decimal point is shown on price numbers -- move later if still confused
+    std::cout << std::showpoint << std::fixed << std::setprecision(2)
+              << "Welcome to Forgotten Books! This is a bookstore "
+              << " filled with books from all around! Please place your books into "
+              << " your shopping cart.\n"
+              << " Enclose string entries with quotes, separate fields with commas.\n"
+              << " Enter CTRL-Z for Windows, or CTRL-D for Linux to quit\n";
+
 
     // store book pointer in standard vector
-    // std::vector<Book> books = *newB;
-    // books.push_back(newB);
+    std::vector<std::unique_ptr<Book>> shoppingCart;
+
+    // Create a book
+    Book b;
+
+    // Read book until end of file
+    while (std::cout << " Enter ISBN, Title, Author, and Price\n", std::cin >> b)
+    {
+        // Place here what you are going to read, in this case you want to read b,
+        // so you fill b w/ books from shoppingCart
+        shoppingCart.push_back(std::make_unique<Book> (std::move(b))); // this is moves contents
+        std::cout << "Item(s) added to shopping cart: " << *shoppingCart.back() << std::endl;
+    }
+
 
     // once reached end of file, write books to standard output in reverse order
+    for (unsigned i = 0; i < shoppingCart.size(); i++) std::cout << *shoppingCart[i] << std::endl;
 
-    // release dynamic memory
-    delete newB;
-    newB = nullptr;
+
     return 0;
 }
