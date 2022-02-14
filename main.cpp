@@ -38,7 +38,7 @@ int main() {
 
     // once reached end of file, write books to standard output in reverse order
     std::cout << "\n\n Here is an itemized list of the items in your shopping cart: \n";
-    for (unsigned i = 0; i < shoppingCart.size(); i++) std::cout << *shoppingCart[i] << std::endl;
+    for (unsigned long i = shoppingCart.size();  i-- > 0; ) std::cout << *shoppingCart[i] << std::endl;
 
 
     return 0;
