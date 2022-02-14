@@ -62,7 +62,7 @@ Book::Book( std::string title,  std::string author,  std::string isbn,  double p
 
 // Use initialization list  -- must initialize as order given from private members
 
-// DID NOT USE MOVE 
+// could of used move(), did not, but by not using made a deep copy
 : _isbn(isbn), _title(title), _author(author), _price(price) {}
 /////////////////////// END-TO-DO (2) ////////////////////////////
 
@@ -87,6 +87,7 @@ Book::Book( Book const & other )
 // Move constructor
 Book::Book( Book && other ) noexcept
 ///////////////////////// TO-DO (4) //////////////////////////////
+  // use Book objects to move contents into private members
 : _isbn   (std::move(other._isbn)),
   _title (std::move(other._title)),
   _author (std::move(other._author)),
@@ -101,6 +102,7 @@ Book::Book( Book && other ) noexcept
 Book & Book::operator=( Book const & rhs ) &
 ///////////////////////// TO-DO (5) //////////////////////////////
 {
+  // if Book object not equal make equal
   if (this != &rhs) {
     _title = rhs._title;
     _author = rhs._author;
@@ -118,6 +120,7 @@ Book & Book::operator=( Book const & rhs ) &
 Book & Book::operator=( Book && rhs ) & noexcept
 ///////////////////////// TO-DO (6) //////////////////////////////
 {
+  // if book object not equal move them into private variables
   if (this != &rhs) {
   _isbn = std::move(rhs._isbn);
   _title = std::move(rhs._title);
@@ -151,6 +154,7 @@ Book::~Book() noexcept
 std::string const & Book::isbn() const &
 {
   ///////////////////////// TO-DO (8) //////////////////////////////
+  // accessor AKA getter, get the private variable
   return this->_isbn;
   /////////////////////// END-TO-DO (8) ////////////////////////////
 }
@@ -162,6 +166,7 @@ std::string const & Book::isbn() const &
 std::string const & Book::title() const &
 {
   ///////////////////////// TO-DO (9) //////////////////////////////
+  // accessor AKA getter, get the private variable
   return this-> _title;
   /////////////////////// END-TO-DO (9) ////////////////////////////
 }
@@ -173,6 +178,7 @@ std::string const & Book::title() const &
 std::string const & Book::author() const &
 {
   ///////////////////////// TO-DO (10) //////////////////////////////
+  // accessor AKA getter, get the private variable
   return this-> _author;
   /////////////////////// END-TO-DO (10) ////////////////////////////
 }
@@ -235,6 +241,7 @@ std::string Book::author() &&
 Book & Book::isbn( std::string newIsbn ) &
 {
   ///////////////////////// TO-DO (15) //////////////////////////////
+  // move new string into private member and return that
   _isbn = std::move(newIsbn);
   return *this;
   /////////////////////// END-TO-DO (15) ////////////////////////////
@@ -247,6 +254,7 @@ Book & Book::isbn( std::string newIsbn ) &
 Book & Book::title( std::string newTitle ) &
 {
   ///////////////////////// TO-DO (16) //////////////////////////////
+  // move new string into private member and return that
   _title = std::move(newTitle);
   return *this;
   /////////////////////// END-TO-DO (16) ////////////////////////////
@@ -259,6 +267,7 @@ Book & Book::title( std::string newTitle ) &
 Book & Book::author( std::string newAuthor ) &
 {
   ///////////////////////// TO-DO (17) //////////////////////////////
+  // move new string into private member and return that
   _author = std::move(newAuthor);
   return *this;
   /////////////////////// END-TO-DO (17) ////////////////////////////
@@ -352,7 +361,8 @@ bool Book::operator==( const Book & rhs ) const noexcept
   // and then the most likely to be different first.
 
   ///////////////////////// TO-DO (20) //////////////////////////////
-
+  // check equality of all items 
+  
   return floating_point_is_equal(_price, rhs._price)
          &&           _isbn == rhs._isbn
          &&           _title == rhs._title
@@ -393,6 +403,8 @@ std::istream & operator>>( std::istream & stream, Book & book )
     ///        1) https://en.cppreference.com/w/cpp/io/manip/quoted
     ///        2) https://www.youtube.com/watch?v=Mu-GUZuU31A
 
+    // use branch to pass by white space, and make sure each item and comma is read in
+
     Book temp;
     char is_comma = ',';
 
@@ -420,7 +432,7 @@ std::ostream & operator<<( std::ostream & stream, const Book & book )
   ///////////////////////// TO-DO (22) //////////////////////////////
     /// This function should be symmetrical with operator>> above.  Read what your write, and write what you read
 
-    // DID NOT CHANGE
+    // return the itemss using extraction operator
   return stream << std::quoted(book._isbn) 
            << ", "
            << std::quoted(book._title)

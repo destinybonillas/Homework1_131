@@ -17,7 +17,7 @@ int main() {
               << " filled with books from all around! Please place your books into "
               << " your shopping cart.\n"
               << " Enclose string entries with quotes, separate fields with commas.\n"
-              << " Enter CTRL-Z for Windows, or CTRL-D for Linux to quit\n";
+              << " Enter CTRL-Z for Windows, or CTRL-D for Linux to quit\n\n";
 
 
     // store book pointer in standard vector
@@ -32,11 +32,12 @@ int main() {
         // Place here what you are going to read, in this case you want to read b,
         // so you fill b w/ books from shoppingCart
         shoppingCart.push_back(std::make_unique<Book> (std::move(b))); // this is moves contents
-        std::cout << "Item(s) added to shopping cart: " << *shoppingCart.back() << std::endl;
+        std::cout << "Item(s) added to shopping cart: " << *shoppingCart.back() << "\n\n";
     }
 
 
     // once reached end of file, write books to standard output in reverse order
+    std::cout << "\n\n Here is an itemized list of the items in your shopping cart: \n";
     for (unsigned i = 0; i < shoppingCart.size(); i++) std::cout << *shoppingCart[i] << std::endl;
 
 
